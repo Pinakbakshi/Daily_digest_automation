@@ -1,19 +1,8 @@
-Thanks! I’ve incorporated your detailed insights into a polished and professional `README.md` for your **Daily Digest Automation** project. This version keeps all the structure you've outlined while enhancing clarity, design, and developer-friendliness:
-
----
-
-````markdown
-# 📬 DAILY_DIGEST_AUTOMATION  
-**Automate Insights, Empower Decisions — Daily**
-
-![last-commit](https://img.shields.io/github/last-commit/Pinakbakshi/Daily_digest_automation)
-![repo-top-language](https://img.shields.io/github/languages/top/Pinakbakshi/Daily_digest_automation)
-![repo-language-count](https://img.shields.io/github/languages/count/Pinakbakshi/Daily_digest_automation)
-
-Built with:  
-![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)  
-![Bash](https://img.shields.io/badge/GNU%20Bash-4EAA25?logo=gnu-bash&logoColor=white)  
-![Markdown](https://img.shields.io/badge/Markdown-000000?logo=markdown&logoColor=white)
+![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)
+![License](https://img.shields.io/github/license/Pinakbakshi/Daily_digest_automation)
+![Last Commit](https://img.shields.io/github/last-commit/Pinakbakshi/Daily_digest_automation)
+![Repo Size](https://img.shields.io/github/repo-size/Pinakbakshi/Daily_digest_automation)
+![Top Language](https://img.shields.io/github/languages/top/Pinakbakshi/Daily_digest_automation)
 
 ---
 
@@ -65,6 +54,28 @@ Make sure you have the following:
 - ✅ **[Conda](https://docs.conda.io/en/latest/) (for environment management)**
 - ✅ Gmail account for SMTP (or update `.env` for your email service)
 - ✅ Google Cloud project with a service account for Sheets API access
+
+name: daily_digest_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - google-auth
+      - google-auth-oauthlib
+      - google-api-python-client
+      - openai
+      - beautifulsoup4
+      - requests
+      - schedule
+      - python-dotenv
+      - smtplib
+      - email-validator
+      - pytz
+      - feedparser
+
 
 ---
 

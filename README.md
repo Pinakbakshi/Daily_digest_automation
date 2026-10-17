@@ -1,150 +1,39 @@
+# Daily Digest Automation
 
+A Python automation project for collecting useful daily content and presenting it in one digest. The planned sources include developer news, GitHub Trending, LeetCode, Hacker News, YouTube, podcasts, and Formula 1 highlights; availability depends on the current source integrations.
 
----
+## Features and design goals
 
-### ✅`README.md`
+- Consolidate selected feeds and content sources into one daily summary.
+- Support scheduled execution with a local scheduler such as cron.
+- Optionally log feedback or selected items to Google Sheets.
+- Keep source-specific fetching separate so an individual integration can fail without breaking the entire digest.
 
-````md
-# DAILY_DIGEST_AUTOMATION
+## Setup
 
-**Automate Insights, Empower Decisions Daily**
+1. Clone this repository and inspect the entry point and dependency files.
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Install the dependencies declared by the project (for example, `pip install -r requirements.txt` if that file exists).
+4. Configure required API credentials and Google service-account settings using environment variables or a local configuration file excluded from Git.
+5. Run the documented entry point manually before scheduling it.
 
-![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)
-![License](https://img.shields.io/github/license/Pinakbakshi/Daily_digest_automation)
-![Last Commit](https://img.shields.io/github/last-commit/Pinakbakshi/Daily_digest_automation)
-![Repo Size](https://img.shields.io/github/repo-size/Pinakbakshi/Daily_digest_automation)
-![Top Language](https://img.shields.io/github/languages/top/Pinakbakshi/Daily_digest_automation)
+Exact commands and required variables should be confirmed against the current source files.
 
----
+## Security
 
-## 📚 Table of Contents
+- Never commit API keys, OAuth tokens, service-account JSON files, or personal data.
+- Restrict Google Sheets access to the minimum required.
+- Treat scraped or externally supplied content as untrusted input.
+- Respect source websites' terms, rate limits, and API policies.
 
-- [Overview](#overview)
-- [Why daily_digest_automation?](#why-daily_digest_automation)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Testing](#testing)
-- [License](#license)
+## Reliability and testing
 
----
+Add tests for feed parsing, empty responses, timeouts, duplicate items, malformed content, and API quota failures. Use bounded retries and logging without printing secrets. A scheduled run should fail visibly and avoid sending a misleading empty digest.
 
-## 📖 Overview
+## Limitations
 
-**Daily_digest_automation** is a comprehensive tool that automates the creation and distribution of personalized daily tech summaries, helping individuals or teams stay updated effortlessly.  
-It integrates environment validation, email service testing, and scheduled workflows to ensure reliable and timely delivery of curated content.
-
----
-
-## ❓ Why `daily_digest_automation`?
-
-This project simplifies the process of aggregating news, updates, and media into daily summaries while ensuring your email configurations are correctly set up and verified. Ideal for teams, professionals, and tech enthusiasts who want to stay informed without manual curation.
-
----
-
-## ✨ Features
-
-- 🛠️ **Environment & SMTP Validation**: Verifies essential environment variables and tests Gmail SMTP login to prevent configuration errors.
-- 🚀 **Automated Digest Generation**: Aggregates relevant news, GitHub trends, YouTube highlights, and more into a concise daily summary.
-- ⏱️ **Workflow Automation**: Uses scripts to schedule and execute digest creation seamlessly.
-- 📊 **Content & Feedback Logging**: Stores summaries and user feedback to support continuous improvement.
-- 🔧 **Email Testing & Reliability**: Ensures email notifications are delivered reliably through dedicated testing utilities.
-
----
-
-## ⚙️ Getting Started
-
-Follow these instructions to get a copy of the project up and running on your local machine.
-
----
-
-## 📦 Prerequisites
-
-This project requires the following:
-
-- **Python** (3.10+)
-- **Conda** (as package manager)
-
----
-
-## 🧪 Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Pinakbakshi/Daily_digest_automation
-cd Daily_digest_automation
-````
-
-### 2. Create a virtual environment using conda
-
-Make sure `conda` is installed, then run:
-
-```bash
-conda env create -f conda.yml
-```
-
-This installs all required dependencies.
-
-### Example `conda.yml`
-
-```yaml
-name: daily_digest_env
-channels:
-  - defaults
-  - conda-forge
-dependencies:
-  - python=3.10
-  - pip
-  - pip:
-      - google-auth
-      - google-auth-oauthlib
-      - google-api-python-client
-      - openai
-      - beautifulsoup4
-      - requests
-      - schedule
-      - python-dotenv
-      - email-validator
-      - feedparser
-      - pytz
-```
-
----
-
-## ▶️ Usage
-
-To run the project, first activate the environment:
-
-```bash
-conda activate daily_digest_env
-python daily_digest.py
-```
-
----
-
-## 🧪 Testing
-
-We use `pytest` as the testing framework.
-
-To run the test suite:
-
-```bash
-conda activate daily_digest_env
-pytest
-```
-
-Tests include:
-
-* `test_env.py`: Validates environment setup
-* `validate_env_email.py`: Checks Gmail SMTP login
-
----
-
-## 🪪 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
+External feeds and scraping selectors can change. This README describes the project's intent; verify each integration and setup command against the checked-out code before relying on it.
